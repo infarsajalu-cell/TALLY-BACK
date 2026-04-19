@@ -8,9 +8,20 @@ const tallyRoutes = require('./routes/tallyRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://tally-back.onrender.com" 
+];
+
 app.use(cors({
-  origin: "http://localhost:3000", // your frontend
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman / curl
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
