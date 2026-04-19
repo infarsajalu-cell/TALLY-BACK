@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
+  "https://tally-front-feo5566va-sajalus-projects-670af783.vercel.app",
   "https://tally-back.onrender.com",
   "http://localhost:3000"
 ];
